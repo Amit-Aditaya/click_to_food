@@ -1,8 +1,10 @@
 import 'package:click_to_food/core/theme/app_colors.dart';
 import 'package:click_to_food/core/utils/app_images.dart';
 import 'package:click_to_food/core/utils/const.dart';
-import 'package:click_to_food/core/widgets/primary_button.dart';
-import 'package:click_to_food/core/widgets/secondary_button.dart';
+import 'package:click_to_food/core/widgets/buttons/primary_button.dart';
+import 'package:click_to_food/core/widgets/buttons/secondary_button.dart';
+import 'package:click_to_food/core/widgets/texts/title_text.dart';
+import 'package:click_to_food/presentation/screens/enter_email_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,14 +23,7 @@ class LoginScreen extends StatelessWidget {
             AppImages.loginImage,
             height: .35.sh,
           ),
-          Text(
-            "Welcome back 👋",
-            style: TextStyle(
-              fontSize: 24.sp,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            ),
-          ),
+          const TitleText(text: "Welcome back 👋"),
           SizedBox(height: .07.sh),
           Text(
             "Choose your log in method",
@@ -48,7 +43,12 @@ class LoginScreen extends StatelessWidget {
               children: [
                 PrimaryButton(
                   text: 'Continue with Email',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return const EnterEmailScreen();
+                    }));
+                  },
                   addLeadingWidget: true,
                 ),
                 SizedBox(height: .02.sh),
