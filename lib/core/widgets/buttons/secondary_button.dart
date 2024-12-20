@@ -6,12 +6,14 @@ class SecondaryButton extends StatelessWidget {
   //const SecondaryButton({super.key});
   final String text;
   final Function onTap;
-  final Widget leadingWidget;
+  final Widget? leadingWidget;
+  Color? textColor;
 
-  const SecondaryButton(
+  SecondaryButton(
       {super.key,
       required this.text,
       required this.onTap,
+      this.textColor,
       required this.leadingWidget});
 
   @override
@@ -28,18 +30,22 @@ class SecondaryButton extends StatelessWidget {
           border:
               Border.all(color: const Color(AppColors.lightGrey), width: 2)),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: leadingWidget != null
+            ? MainAxisAlignment.spaceBetween
+            : MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          leadingWidget,
-          Text(
-            'Continue with Google',
-            style: TextStyle(
-                color: const Color(AppColors.primaryTextColor),
-                fontWeight: FontWeight.w700,
-                fontSize: 14.sp),
+          if (leadingWidget != null) leadingWidget!,
+          Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                  color: textColor ?? const Color(AppColors.primaryTextColor),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 14.sp),
+            ),
           ),
-          const SizedBox(),
+          if (leadingWidget != null) const SizedBox(),
         ],
       ),
     );

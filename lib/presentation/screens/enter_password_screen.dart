@@ -6,13 +6,20 @@ import 'package:click_to_food/core/widgets/buttons/primary_button.dart';
 import 'package:click_to_food/core/widgets/textfields/primary_textfeild.dart';
 import 'package:click_to_food/core/widgets/texts/subtitle_text.dart';
 import 'package:click_to_food/core/widgets/texts/title_text.dart';
-import 'package:click_to_food/presentation/screens/enter_password_screen.dart';
+import 'package:click_to_food/presentation/widget/dialogs/login/no_account_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
-class EnterEmailScreen extends StatelessWidget {
-  const EnterEmailScreen({super.key});
+class EnterPasswordScreen extends StatefulWidget {
+  const EnterPasswordScreen({super.key});
+
+  @override
+  State<EnterPasswordScreen> createState() => _EnterPasswordScreenState();
+}
+
+class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
+  bool isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -39,28 +46,65 @@ class EnterEmailScreen extends StatelessWidget {
                   SizedBox(
                     height: .05.sh,
                   ),
-                  const TitleText(text: "Log In with email"),
+                  const TitleText(text: "Enter your password"),
                   SizedBox(
                     height: .01.sh,
                   ),
                   const SubTitleText(
-                      text: "Let’s log in into your Click To Food account"),
+                      text: "Please enter your password to continue"),
                   SizedBox(
                     height: .025.sh,
                   ),
                   PrimaryTextField(
-                    hintText: "Enter your email",
+                    hintText: "Type your password",
+                    obscureText: isObscure,
+                    prefixIcon: Container(
+                      padding: const EdgeInsets.all(12.5),
+                      height: 0.04.sh,
+                      width: 0.04.sh,
+                      child: SvgPicture.asset(
+                        AppImages.lockPassword,
+                      ),
+                    ),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        isObscure = !isObscure;
+                        setState(() {});
+                      },
+                      child: Icon(
+                        isObscure
+                            ? Icons.visibility_outlined
+                            : Icons.visibility_off,
+                        color: const Color(AppColors.tertiaryTextColor),
+                      ),
+                    ),
                   ),
+                  SizedBox(
+                    height: 0.01.sh,
+                  ),
+                  Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 0.01.sw),
+                        child: Text(
+                          'forgot password?',
+                          style: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                              color: const Color(AppColors.mediumGrey)),
+                        ),
+                      )),
                   SizedBox(
                     height: .03.sh,
                   ),
                   PrimaryButton(
-                    text: "Continue",
+                    text: "Log in",
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return const EnterPasswordScreen();
-                      }));
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return const NoAccountDialog();
+                          });
                     },
                   ),
                   SizedBox(

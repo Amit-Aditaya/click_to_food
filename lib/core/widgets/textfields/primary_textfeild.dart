@@ -4,8 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PrimaryTextField extends StatelessWidget {
   final String hintText;
+  Widget? prefixIcon;
+  Widget? suffixIcon;
+  bool? obscureText;
 
-  const PrimaryTextField({super.key, required this.hintText});
+  PrimaryTextField(
+      {super.key,
+      required this.hintText,
+      this.prefixIcon,
+      this.suffixIcon,
+      this.obscureText});
 
   @override
   Widget build(BuildContext context) {
@@ -18,19 +26,22 @@ class PrimaryTextField extends StatelessWidget {
         ),
         child: Center(
           child: TextField(
+              obscureText: obscureText == true ? true : false,
+              obscuringCharacter: '●',
               cursorColor: const Color(AppColors.primaryColor),
               textAlignVertical: TextAlignVertical.center,
               decoration: InputDecoration(
-                contentPadding: EdgeInsets.only(bottom: .005.sh),
-                border: InputBorder.none,
-                hintText: hintText,
-                hintStyle:
-                    const TextStyle(color: Color(AppColors.tertiaryTextColor)),
-                prefixIcon: const Icon(
-                  Icons.email_outlined,
-                  color: Color(AppColors.tertiaryTextColor),
-                ),
-              )),
+                  //    contentPadding: EdgeInsets.only(bottom: .0025.sh),
+                  border: InputBorder.none,
+                  hintText: hintText,
+                  hintStyle: const TextStyle(
+                      color: Color(AppColors.tertiaryTextColor)),
+                  prefixIcon: prefixIcon ??
+                      const Icon(
+                        Icons.email_outlined,
+                        color: Color(AppColors.tertiaryTextColor),
+                      ),
+                  suffixIcon: suffixIcon)),
         ));
   }
 }

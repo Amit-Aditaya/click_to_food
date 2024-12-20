@@ -6,11 +6,13 @@ class PrimaryButton extends StatelessWidget {
   final String text;
   final Function onTap;
   bool? addLeadingWidget;
+  bool? isSmall;
 
   PrimaryButton(
       {super.key,
       required this.text,
       required this.onTap,
+      this.isSmall,
       this.addLeadingWidget});
 
   @override
@@ -20,14 +22,17 @@ class PrimaryButton extends StatelessWidget {
         onTap();
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: .05.sw),
+        padding:
+            EdgeInsets.symmetric(horizontal: isSmall == true ? .025 : .05.sw),
         decoration: BoxDecoration(
             color: const Color(AppColors.primaryColor),
             borderRadius: BorderRadius.circular(50)),
         height: .075.sh,
         width: double.infinity,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: isSmall == true
+              ? MainAxisAlignment.spaceEvenly
+              : MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             addLeadingWidget == true
@@ -37,18 +42,18 @@ class PrimaryButton extends StatelessWidget {
                     color: const Color(AppColors.white),
                   )
                 : SizedBox(
-                    width: .025.sw,
+                    width: isSmall == true ? 0 : .025.sw,
                   ),
             Text(
               text,
               style: TextStyle(
                   color: const Color(AppColors.white),
-                  fontSize: 14.sp,
+                  fontSize: isSmall == true ? 12.5.sp : 14.sp,
                   fontWeight: FontWeight.w700),
             ),
             Icon(
               Icons.email_outlined,
-              size: .03.sh,
+              size: isSmall == true ? 0.02.sh : .03.sh,
               color: const Color(AppColors.white),
             ),
           ],
