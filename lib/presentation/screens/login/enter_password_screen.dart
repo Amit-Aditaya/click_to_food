@@ -7,6 +7,7 @@ import 'package:click_to_food/core/widgets/buttons/primary_button.dart';
 import 'package:click_to_food/core/widgets/textfields/primary_textfeild.dart';
 import 'package:click_to_food/core/widgets/texts/subtitle_text.dart';
 import 'package:click_to_food/core/widgets/texts/title_text.dart';
+import 'package:click_to_food/presentation/screens/login/forget_password_screen.dart';
 import 'package:click_to_food/presentation/screens/login/verify_otp_screen.dart';
 import 'package:click_to_food/presentation/widget/dialogs/login/no_account_dialog.dart';
 import 'package:flutter/material.dart';
@@ -92,14 +93,23 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                     ),
                     Align(
                         alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 0.01.sw),
-                          child: Text(
-                            'forgot password?',
-                            style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.w600,
-                                color: const Color(AppColors.mediumGrey)),
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ForgetPasswordScreen()));
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(right: 0.01.sw),
+                            child: Text(
+                              'forgot password?',
+                              style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: const Color(AppColors.mediumGrey)),
+                            ),
                           ),
                         )),
                     SizedBox(
@@ -116,7 +126,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                                   onTapForward: () {
                                     Navigator.push(context,
                                         MaterialPageRoute(builder: (context) {
-                                      return const VerifyOtpScreen();
+                                      return VerifyOtpScreen();
                                     }));
                                   },
                                 );

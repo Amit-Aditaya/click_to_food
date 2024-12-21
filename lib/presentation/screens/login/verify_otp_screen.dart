@@ -6,13 +6,16 @@ import 'package:click_to_food/core/widgets/buttons/primary_button.dart';
 import 'package:click_to_food/core/widgets/texts/subtitle_text.dart';
 import 'package:click_to_food/core/widgets/texts/title_text.dart';
 import 'package:click_to_food/presentation/screens/login/create_account_screen.dart';
+import 'package:click_to_food/presentation/screens/login/setup_new_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyOtpScreen extends StatelessWidget {
-  const VerifyOtpScreen({super.key});
+  bool? navigateToNewPassScreen;
+
+  VerifyOtpScreen({super.key, this.navigateToNewPassScreen});
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +131,9 @@ class VerifyOtpScreen extends StatelessWidget {
               child: PrimaryButton(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return const CreateAccountScreen();
+                    return navigateToNewPassScreen == true
+                        ? SetupNewPasswordScreen()
+                        : const CreateAccountScreen();
                   }));
                 },
                 text: 'Submit',

@@ -6,4 +6,7 @@ class AppImages {
   static const lockPassword = "assets/images/lock-password.svg";
   static const red_user = "assets/images/red_user.svg";
   static const otp = "assets/images/otp.svg";
+  static const forgotPass = "assets/images/forgot pass.svg";
+  static const newPass = "assets/images/new_pass.svg";
+  static const success = "assets/images/success_1.gif";
 }
