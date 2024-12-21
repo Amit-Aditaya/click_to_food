@@ -8,4 +8,5 @@ class AppColors {
   static const int lightMediumGrey = 0xffF0F0F0;
   static const int mediumGrey = 0xff757D85;
   static const int black = 0xff000000;
+  static const int errorRed = 0xffF1160D;
 }

@@ -7,7 +7,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class NoAccountDialog extends StatelessWidget {
-  const NoAccountDialog({super.key});
+  //const NoAccountDialog({super.key});
+  final Function onTapForward;
+
+  const NoAccountDialog({super.key, required this.onTapForward});
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +26,16 @@ class NoAccountDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SvgPicture.asset(AppImages.red_user),
-              const Align(
+              Align(
                 alignment: Alignment.topRight,
-                child: Icon(
-                  Icons.close,
-                  color: Color(AppColors.black),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(
+                    Icons.close,
+                    color: Color(AppColors.black),
+                  ),
                 ),
               )
             ],
@@ -64,7 +72,9 @@ class NoAccountDialog extends StatelessWidget {
               Expanded(
                 child: SecondaryButton(
                     text: 'Back',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
                     textColor: const Color(AppColors.mediumGrey),
                     leadingWidget: null),
               ),
@@ -73,7 +83,11 @@ class NoAccountDialog extends StatelessWidget {
               ),
               Expanded(
                 child: PrimaryButton(
-                    isSmall: true, text: 'Create Account', onTap: () {}),
+                    isSmall: true,
+                    text: 'Create Account',
+                    onTap: () {
+                      onTapForward();
+                    }),
               )
             ],
           )

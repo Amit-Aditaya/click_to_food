@@ -7,41 +7,63 @@ class PrimaryTextField extends StatelessWidget {
   Widget? prefixIcon;
   Widget? suffixIcon;
   bool? obscureText;
+  String? Function(String?)? validator;
+  TextEditingController? controller;
 
   PrimaryTextField(
       {super.key,
       required this.hintText,
       this.prefixIcon,
       this.suffixIcon,
+      this.validator,
+      this.controller,
       this.obscureText});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: .075.sh,
-        padding: EdgeInsets.symmetric(horizontal: .03.sw),
-        decoration: BoxDecoration(
-          border: Border.all(color: const Color(AppColors.tertiaryTextColor)),
-          borderRadius: BorderRadius.circular(50.0),
-        ),
-        child: Center(
-          child: TextField(
-              obscureText: obscureText == true ? true : false,
-              obscuringCharacter: '●',
-              cursorColor: const Color(AppColors.primaryColor),
-              textAlignVertical: TextAlignVertical.center,
-              decoration: InputDecoration(
-                  //    contentPadding: EdgeInsets.only(bottom: .0025.sh),
-                  border: InputBorder.none,
-                  hintText: hintText,
-                  hintStyle: const TextStyle(
-                      color: Color(AppColors.tertiaryTextColor)),
-                  prefixIcon: prefixIcon ??
-                      const Icon(
-                        Icons.email_outlined,
-                        color: Color(AppColors.tertiaryTextColor),
-                      ),
-                  suffixIcon: suffixIcon)),
+    return SizedBox(
+        //  height: 55,
+        width: double.infinity,
+        child: TextFormField(
+          controller: controller,
+          validator: validator,
+          obscureText: obscureText == true ? true : false,
+          obscuringCharacter: '●',
+          cursorColor: const Color(AppColors.primaryColor),
+          decoration: InputDecoration(
+            errorStyle: TextStyle(
+                color: const Color(
+                  AppColors.errorRed,
+                ),
+                fontSize: 12.sp,
+                fontWeight: FontWeight.w600),
+            errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color(AppColors.lightGrey), width: 1.5),
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color(AppColors.lightGrey), width: 1.5),
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: const BorderSide(
+                  color: Color(AppColors.lightGrey), width: 1.5),
+              borderRadius: BorderRadius.circular(25.0),
+            ),
+            hintText: hintText,
+            suffixIcon: suffixIcon,
+            prefixIcon: prefixIcon ??
+                const Icon(
+                  Icons.email_outlined,
+                  color: Color(AppColors.tertiaryTextColor),
+                ),
+            contentPadding: EdgeInsets.symmetric(
+                vertical: ScreenUtil().setHeight(17),
+                horizontal: ScreenUtil().setWidth(10)),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
+          ),
         ));
   }
 }

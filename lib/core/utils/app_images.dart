@@ -5,4 +5,5 @@ class AppImages {
   static const backArrow = "assets/images/arrow-left.svg";
   static const lockPassword = "assets/images/lock-password.svg";
   static const red_user = "assets/images/red_user.svg";
+  static const otp = "assets/images/otp.svg";
 }
