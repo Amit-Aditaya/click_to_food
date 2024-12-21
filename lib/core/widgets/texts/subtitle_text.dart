@@ -13,7 +13,7 @@ class SubTitleText extends StatelessWidget {
       text,
       style: TextStyle(
           color: const Color(AppColors.tertiaryTextColor),
-          fontSize: 14.sp,
+          fontSize: 15.sp,
           fontWeight: FontWeight.w400),
     );
   }

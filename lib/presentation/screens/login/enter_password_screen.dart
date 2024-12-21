@@ -1,12 +1,13 @@
 import 'package:click_to_food/core/theme/app_colors.dart';
 import 'package:click_to_food/core/utils/app_images.dart';
 import 'package:click_to_food/core/utils/const.dart';
+import 'package:click_to_food/core/utils/validator.dart';
 import 'package:click_to_food/core/widgets/buttons/app_back_button.dart';
 import 'package:click_to_food/core/widgets/buttons/primary_button.dart';
 import 'package:click_to_food/core/widgets/textfields/primary_textfeild.dart';
 import 'package:click_to_food/core/widgets/texts/subtitle_text.dart';
 import 'package:click_to_food/core/widgets/texts/title_text.dart';
-import 'package:click_to_food/presentation/screens/verify_otp_screen.dart';
+import 'package:click_to_food/presentation/screens/login/verify_otp_screen.dart';
 import 'package:click_to_food/presentation/widget/dialogs/login/no_account_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,28 +64,7 @@ class _EnterPasswordScreenState extends State<EnterPasswordScreen> {
                     ),
                     PrimaryTextField(
                       hintText: "Type your password",
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your password';
-                        }
-                        if (value.length < 8) {
-                          return 'Password must be at least 8 characters long';
-                        }
-                        if (!RegExp(r'[A-Z]').hasMatch(value)) {
-                          return 'Password must contain at least one uppercase letter';
-                        }
-                        if (!RegExp(r'[a-z]').hasMatch(value)) {
-                          return 'Password must contain at least one lowercase letter';
-                        }
-                        if (!RegExp(r'[0-9]').hasMatch(value)) {
-                          return 'Password must contain at least one number';
-                        }
-                        if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]')
-                            .hasMatch(value)) {
-                          return 'Password must contain at least one special character';
-                        }
-                        return null;
-                      },
+                      validator: Validators.validatePassword,
                       obscureText: isObscure,
                       prefixIcon: Container(
                         padding: const EdgeInsets.all(12.5),

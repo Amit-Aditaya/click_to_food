@@ -9,6 +9,7 @@ class PrimaryTextField extends StatelessWidget {
   bool? obscureText;
   String? Function(String?)? validator;
   TextEditingController? controller;
+  TextInputType? keyboardType;
 
   PrimaryTextField(
       {super.key,
@@ -17,6 +18,7 @@ class PrimaryTextField extends StatelessWidget {
       this.suffixIcon,
       this.validator,
       this.controller,
+      this.keyboardType,
       this.obscureText});
 
   @override
@@ -30,6 +32,7 @@ class PrimaryTextField extends StatelessWidget {
           obscureText: obscureText == true ? true : false,
           obscuringCharacter: '●',
           cursorColor: const Color(AppColors.primaryColor),
+          keyboardType: keyboardType,
           decoration: InputDecoration(
             errorStyle: TextStyle(
                 color: const Color(

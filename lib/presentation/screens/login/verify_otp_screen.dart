@@ -5,6 +5,7 @@ import 'package:click_to_food/core/widgets/buttons/app_back_button.dart';
 import 'package:click_to_food/core/widgets/buttons/primary_button.dart';
 import 'package:click_to_food/core/widgets/texts/subtitle_text.dart';
 import 'package:click_to_food/core/widgets/texts/title_text.dart';
+import 'package:click_to_food/presentation/screens/login/create_account_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -80,6 +81,7 @@ class VerifyOtpScreen extends StatelessWidget {
                         disabledColor: const Color(AppColors.lightGrey)),
                     animationDuration: const Duration(milliseconds: 300),
                     backgroundColor: Colors.transparent,
+                    keyboardType: TextInputType.number,
                     enableActiveFill: true,
                     onCompleted: (v) {},
                     onChanged: (value) {},
@@ -124,7 +126,11 @@ class VerifyOtpScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                   horizontal: Constants.appHorizontalPadding),
               child: PrimaryButton(
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const CreateAccountScreen();
+                  }));
+                },
                 text: 'Submit',
               ),
             )

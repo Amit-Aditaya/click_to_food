@@ -1,12 +1,13 @@
 import 'package:click_to_food/core/theme/app_colors.dart';
 import 'package:click_to_food/core/utils/app_images.dart';
 import 'package:click_to_food/core/utils/const.dart';
+import 'package:click_to_food/core/utils/validator.dart';
 import 'package:click_to_food/core/widgets/buttons/app_back_button.dart';
 import 'package:click_to_food/core/widgets/buttons/primary_button.dart';
 import 'package:click_to_food/core/widgets/textfields/primary_textfeild.dart';
 import 'package:click_to_food/core/widgets/texts/subtitle_text.dart';
 import 'package:click_to_food/core/widgets/texts/title_text.dart';
-import 'package:click_to_food/presentation/screens/enter_password_screen.dart';
+import 'package:click_to_food/presentation/screens/login/enter_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -54,21 +55,9 @@ class EnterEmailScreen extends StatelessWidget {
                       height: .025.sh,
                     ),
                     PrimaryTextField(
-                      controller: _emailController,
-                      hintText: "Enter your email",
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return 'Please enter your email';
-                        }
-                        const String emailPattern =
-                            r'^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+$';
-                        final RegExp regex = RegExp(emailPattern);
-                        if (!regex.hasMatch(value)) {
-                          return 'Please enter a valid email address';
-                        }
-                        return null;
-                      },
-                    ),
+                        controller: _emailController,
+                        hintText: "Enter your email",
+                        validator: Validators.validateEmail),
                     SizedBox(
                       height: .03.sh,
                     ),

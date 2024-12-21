@@ -4,7 +4,7 @@ import 'package:click_to_food/core/utils/const.dart';
 import 'package:click_to_food/core/widgets/buttons/primary_button.dart';
 import 'package:click_to_food/core/widgets/buttons/secondary_button.dart';
 import 'package:click_to_food/core/widgets/texts/title_text.dart';
-import 'package:click_to_food/presentation/screens/enter_email_screen.dart';
+import 'package:click_to_food/presentation/screens/login/enter_email_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';

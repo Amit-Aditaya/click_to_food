@@ -1,4 +1,4 @@
-import 'package:click_to_food/presentation/screens/login_screen.dart';
+import 'package:click_to_food/presentation/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
